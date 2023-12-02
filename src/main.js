@@ -19,3 +19,5 @@ let { width, height } = game.config
 //set UI sizes
 let borderUISize = game.config.height / 25;
 let borderPadding = borderUISize / 15;
+
+let keyENTER, keyLEFT, keyRIGHT, keyUP;
