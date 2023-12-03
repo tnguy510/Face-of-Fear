@@ -6,6 +6,7 @@ class Quiz extends Phaser.Scene {
         this.bigPhobia = 0
         this.needlePhobia = 0
         this.holesPhobia = 0
+        console.log("quiz check")
     }
 
     update() {
