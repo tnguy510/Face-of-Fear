@@ -19,7 +19,11 @@ class Menu extends Phaser.Scene {
 
         this.background
         this.add.text(game.config.width/2, game.config.height/3 - borderUISize -
-        borderPadding, 'Face of Fear', menuConfig).setOrigin(0.5)
+            borderPadding, 'Face of Fear', menuConfig).setOrigin(0.5)
+        this.add.text(game.config.width/2, game.config.height/2.5 - borderUISize -
+            borderPadding, 'Enter to Go to Quiz, Left for Spiders', menuConfig).setOrigin(0.5)
+        this.add.text(game.config.width/2, game.config.height/2 - borderUISize -
+            borderPadding, 'Right for Needles, Up for Holes', menuConfig).setOrigin(0.5)
         //menu keys
         keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER)
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT)

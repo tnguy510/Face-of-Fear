@@ -4,7 +4,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this)
         scene.physics.add.existing(this)   //add physics body to scene
 
-        this.body.setSize(this.width / 2, this.height / 2)
+        this.body.setSize(this.width / 2, this.height)
         this.body.setCollideWorldBounds(true)
 
         //set custom Player properties
@@ -15,7 +15,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         scene.playerFSM = new StateMachine( 'idle', {
             idle: new IdleState(),
             move: new MoveState(),
-            hurt: new HurtState(),
+            //hurt: new HurtState(),
         }, [scene, this])
 
     }
@@ -63,7 +63,7 @@ class MoveState extends State {
         }
 
         moveDirection.normalize()
-    player.setVelocity(player.playerVelocity * moveDirection.x, player.playerVelocity * moveDirection.y)
-    player.anims.play(`walk=${hero.direction}`, true)
+        player.setVelocity(player.playerVelocity * moveDirection.x, player.playerVelocity * moveDirection.y)
+        player.anims.play(`walk-${player.direction}`, true)
     }
 }
