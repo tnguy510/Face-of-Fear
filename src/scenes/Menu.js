@@ -37,17 +37,17 @@ class Menu extends Phaser.Scene {
             this.scene.start('quizScene')
         }
         if(Phaser.Input.Keyboard.JustDown(keyLEFT)){
-            spiderVer = 1
+            enemyType = "spider"
             console.log("spidertime")
             this.scene.start('playScene')
         }
         if(Phaser.Input.Keyboard.JustDown(keyRIGHT)){
-            needleVer = 1
+            enemyType = "needle"
             console.log("needletime")
             this.scene.start('playScene')
         }
         if(Phaser.Input.Keyboard.JustDown(keyUP)){
-            holesVer = 1
+            enemyType = "hole"
             console.log("hole check")
             this.scene.start('playScene')
         }

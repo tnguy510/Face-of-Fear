@@ -11,10 +11,13 @@ class Load extends Phaser.Scene {
             frameWidth: 48,
             frameHeight: 48
         })
+        this.load.image('spider', 'spider.png')
+        this.load.image('needle', 'needle.png')
         
     }
 
     create(){
+
         // player animations (walking)
         this.anims.create({
             key: 'walk-down',

@@ -24,6 +24,4 @@ let borderUISize = game.config.height / 25;
 let borderPadding = borderUISize / 15;
 
 let keyENTER, keyLEFT, keyRIGHT, keyUP;
-var spiderVer = 0
-var needleVer = 0
-var holesVer = 0
+var enemyType;
