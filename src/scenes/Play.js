@@ -21,7 +21,6 @@ class Play extends Phaser.Scene {
         this.player = new Player(this, 200, 150, 'player', 1, 'down')
 
         //const spider = this.physics.add.sprite(0, 0, 'spider')
-        //this.enemy1 = new Enemy(this, 200, 300, enemyType, 1, 'down')
         
         //this.enemy2 = new Enemy(this, this.world.randomX, this.world.randomX, enemyType, 1, 'down')
         //this.enemy2.body.collideWorldBounds = true
@@ -40,5 +39,24 @@ class Play extends Phaser.Scene {
     update() {
         this.playerFSM.step()
         //setTimeout(moveEnemy, 3000, this, this.enemy)
+        if(this.checkCollision(this.player, this.enemy1)) {
+            this.player.destroy()
+            this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER').setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or <- for Menu').setOrigin(0.5);
+            this.gameOver = true;
+        }
+        moveEnemy(this, this.enemy1)
+    }
+
+    checkCollision(player, enemy){
+        //simple AABB checking
+        if (player.x < enemy.x + enemy.width &&
+            player.x + enemy.width > enemy.x &&
+            player.y < enemy.y + enemy.height &&
+            player.height + player.y > enemy.y){
+                return true;
+            } else {
+                return false;
+            }
     }
 }

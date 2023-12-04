@@ -12,12 +12,12 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
         this.texture =  texture
         this.enemyVelocity = 100     //in pixels
 
-        for (var i = 0; i < game.config.width; i++){
-            let enemy = new Enemy(this, Phaser.Math.Between(0, game.config.width), 
-                Phaser.Math.Between(0, game.config.height), this.texture, 0, 'down')
+        //for (var i = 0; i < game.config.width; i++){
+        //    let enemy = new Enemy(this, Phaser.Math.Between(0, game.config.width), 
+        //        Phaser.Math.Between(0, game.config.height), this.texture, 0, 'down')
                 //scene, x, y, texture, frame, direction
-                this.physics.add.existing(enemy)
-        }
+        //        this.physics.add.existing(enemy)
+        //}
     }
 }
 
@@ -49,6 +49,6 @@ function moveEnemy(scene, enemy) {
 
         moveDirection.normalize()
         enemy.setVelocity(enemy.enemyVelocity * moveDirection.x, enemy.enemyVelocity * moveDirection.y)
-        //player.anims.play(`walk-${player.direction}`, true)
+        //enemy.anims.play(`walk-${player.direction}`, true)
     //}
 }
