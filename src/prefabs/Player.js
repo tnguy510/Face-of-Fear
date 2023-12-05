@@ -9,13 +9,13 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
         //set custom Player properties
         this.direction = direction
-        this.heroVelocity = 100     //in pixels
+        this.playerVelocity = 100     //in pixels
         this.hurtTimer = 250        //in ms
 
         scene.playerFSM = new StateMachine( 'idle', {
             idle: new IdleState(),
             move: new MoveState(),
-            //hurt: new HurtState(),
+            dead: new DeadState(),
         }, [scene, this])
 
     }
@@ -34,6 +34,8 @@ class IdleState extends State {
             this.stateMachine.transition('move')
             return
         }
+
+        //if(player)
     }
 }
 
@@ -65,5 +67,13 @@ class MoveState extends State {
         moveDirection.normalize()
         player.setVelocity(player.playerVelocity * moveDirection.x, player.playerVelocity * moveDirection.y)
         player.anims.play(`walk-${player.direction}`, true)
+    }
+}
+
+class DeadState extends State {
+    enter(scene, player) {
+        player.setVelocity(0)
+        player.anims.play(`walk-${player.direction}`)
+        player.anims.stop()
     }
 }

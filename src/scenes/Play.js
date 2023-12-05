@@ -34,6 +34,13 @@ class Play extends Phaser.Scene {
             this.physics.world.drawDebug = this.physics.world.drawDebug ? false : true
             this.physics.world.debugGraphic.clear()
         }, this)
+
+        moveEnemy(this, this.enemy1)
+
+        this.backgroundNoise = this.sound.add('spidercrawl')
+        this.backgroundNoise.loop = true
+        this.backgroundNoise.play()
+
     }
 
     update() {
@@ -41,11 +48,10 @@ class Play extends Phaser.Scene {
         //setTimeout(moveEnemy, 3000, this, this.enemy)
         if(this.checkCollision(this.player, this.enemy1)) {
             this.player.destroy()
-            this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER').setOrigin(0.5);
-            this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or <- for Menu').setOrigin(0.5);
-            this.gameOver = true;
+        //    this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER').setOrigin(0.5);
+        //    this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or <- for Menu').setOrigin(0.5);
+        //    this.gameOver = true;
         }
-        moveEnemy(this, this.enemy1)
     }
 
     checkCollision(player, enemy){

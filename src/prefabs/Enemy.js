@@ -23,8 +23,7 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
 
 function moveEnemy(scene, enemy) {
     //execute(scene, player) {
-        var move = Math.floor(Math.random() * 4)
-        console.log(move)
+        var move = Math.floor(Math.random() * 5)
 
         let moveDirection = new Phaser.Math.Vector2(0,0)
         if(move === 1) {
@@ -41,14 +40,13 @@ function moveEnemy(scene, enemy) {
             moveDirection.x = 1
             enemy.direction = 'right'
         }
-        if(move === 0){
+        else{
             
         }
-        //this.time.delayedCall(10000)
-        console.log("pass")
 
         moveDirection.normalize()
         enemy.setVelocity(enemy.enemyVelocity * moveDirection.x, enemy.enemyVelocity * moveDirection.y)
-        //enemy.anims.play(`walk-${player.direction}`, true)
+        //enemy.anims.play(`walk-${enemy.direction}`, true)
+        setTimeout(moveEnemy, 300, this, enemy)
     //}
 }
