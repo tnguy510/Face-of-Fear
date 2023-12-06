@@ -47,10 +47,11 @@ class Play extends Phaser.Scene {
         this.playerFSM.step()
         //setTimeout(moveEnemy, 3000, this, this.enemy)
         if(this.checkCollision(this.player, this.enemy1)) {
+            this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER').setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or <- for Menu').setOrigin(0.5);
+            this.player.setVelocity(0)
             this.player.destroy()
-        //    this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER').setOrigin(0.5);
-        //    this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or <- for Menu').setOrigin(0.5);
-        //    this.gameOver = true;
+            
         }
     }
 

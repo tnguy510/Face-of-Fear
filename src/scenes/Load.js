@@ -78,7 +78,6 @@ class Load extends Phaser.Scene {
             repeat: -1,
             frames: this.anims.generateFrameNumbers('spider', { start: 0, end: 0 }),
         })
-
         // go to Menu once loading is done
         this.scene.start('menuScene')
     }

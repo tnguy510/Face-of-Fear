@@ -15,7 +15,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         scene.playerFSM = new StateMachine( 'idle', {
             idle: new IdleState(),
             move: new MoveState(),
-            dead: new DeadState(),
+            //dead: new DeadState(),
         }, [scene, this])
 
     }
@@ -35,7 +35,10 @@ class IdleState extends State {
             return
         }
 
-        //if(player)
+        //if(gameover === true){
+         //   this.stateMachine.transition('dead')
+        //}
+
     }
 }
 
@@ -67,13 +70,19 @@ class MoveState extends State {
         moveDirection.normalize()
         player.setVelocity(player.playerVelocity * moveDirection.x, player.playerVelocity * moveDirection.y)
         player.anims.play(`walk-${player.direction}`, true)
+
+        
     }
 }
 
-class DeadState extends State {
-    enter(scene, player) {
-        player.setVelocity(0)
-        player.anims.play(`walk-${player.direction}`)
-        player.anims.stop()
-    }
-}
+//class DeadState extends State {
+  //  execute(scene, player) {
+        //player.setVelocity(0)
+        //player.anims.play(`walk-${player.direction}`)
+   //     if(!gameover === true){
+            //player.destroy()
+   //         this.stateMachine.transition('idle')
+   //         return
+  //      }
+  //  }
+//}
