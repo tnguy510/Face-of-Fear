@@ -20,6 +20,7 @@ class Load extends Phaser.Scene {
             frameHeight: 440
         })
         this.load.image('needle', 'needle.png')
+        this.load.image('door', 'door.png')
         this.load.audio('spidercrawl', 'critters-creeping.wav');
         
     }

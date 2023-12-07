@@ -26,3 +26,4 @@ let borderPadding = borderUISize / 15;
 let gameover = false;
 let keyENTER, keyLEFT, keyRIGHT, keyUP;
 var enemyType;
+let difficulty = 1

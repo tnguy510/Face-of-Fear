@@ -37,7 +37,7 @@ class IdleState extends State {
 
         //if(gameover === true){
          //   this.stateMachine.transition('dead')
-        //}
+        //}/
 
     }
 }

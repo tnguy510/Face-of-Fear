@@ -5,8 +5,16 @@ class Play extends Phaser.Scene {
     create(){
         this.background = this.add.image(0,0, 'dungeon').setOrigin(0)
 
+        this.enemy = [1,2,3]
+
         if(enemyType === "spider" || enemyType === "needle"){
-            console.log("spider play")
+            //console.log("spider play")
+            //for(let i = 1; difficulty <= 3; i++){
+            //    this.enemy[i] = new Enemy(this, Phaser.Math.Between(0, game.config.width), 
+            ///    Phaser.Math.Between(0, game.config.height), enemyType, 0, 'down')
+                //scene, x, y, texture, frame, direction
+                //this.physics.add.existing(this)
+            //}
             this.enemy1 = new Enemy(this, 200, 300, enemyType, 0, 'down')
             this.enemy1.body.collideWorldBounds = true
             this.enemy1.setScale(.3)
@@ -17,6 +25,8 @@ class Play extends Phaser.Scene {
         else if(enemyType === "hole"){
             console.log("hole play")
         }
+
+        this.door = this.add.image(game.config.width / 2, 'door').setOrigin(0)
 
         this.player = new Player(this, 200, 150, 'player', 1, 'down')
 
@@ -55,12 +65,12 @@ class Play extends Phaser.Scene {
         }
     }
 
-    checkCollision(player, enemy){
+    checkCollision(player, object){
         //simple AABB checking
-        if (player.x < enemy.x + enemy.width &&
-            player.x + enemy.width > enemy.x &&
-            player.y < enemy.y + enemy.height &&
-            player.height + player.y > enemy.y){
+        if (player.x < object.x + object.width &&
+            player.x + object.width > object.x &&
+            player.y < object.y + object.height &&
+            player.height + player.y > object.y){
                 return true;
             } else {
                 return false;
