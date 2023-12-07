@@ -26,7 +26,7 @@ class Play extends Phaser.Scene {
             console.log("hole play")
         }
 
-        this.door = this.add.image(game.config.width / 2, 'door').setOrigin(0)
+        this.door = this.add.image(game.config.width / 2, 0,'door').setOrigin(0)
 
         this.player = new Player(this, 200, 150, 'player', 1, 'down')
 
@@ -54,13 +54,26 @@ class Play extends Phaser.Scene {
     }
 
     update() {
+        if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
+            this.scene.restart();
+        }
+        if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
+            this.scene.start("menuScene");
+        }
+
         this.playerFSM.step()
         //setTimeout(moveEnemy, 3000, this, this.enemy)
         if(this.checkCollision(this.player, this.enemy1)) {
+            gameover = true;
             this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER').setOrigin(0.5);
             this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or <- for Menu').setOrigin(0.5);
             this.player.setVelocity(0)
             this.player.destroy()
+            
+        }
+
+        if(this.checkCollision(this.player, this.door)) {
+            this.scene.restart();
             
         }
     }
@@ -68,7 +81,7 @@ class Play extends Phaser.Scene {
     checkCollision(player, object){
         //simple AABB checking
         if (player.x < object.x + object.width &&
-            player.x + object.width > object.x &&
+            player.x + player.width > object.x &&
             player.y < object.y + object.height &&
             player.height + player.y > object.y){
                 return true;
