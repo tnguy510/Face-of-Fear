@@ -3,6 +3,7 @@ class Play extends Phaser.Scene {
         super("playScene")
     }
     create(){
+        keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         this.background = this.add.image(0,0, 'dungeon').setOrigin(0)
 
         this.enemy = [1,2,3]
@@ -51,6 +52,18 @@ class Play extends Phaser.Scene {
         this.backgroundNoise.loop = true
         this.backgroundNoise.play()
 
+        this.player.body.onOverlap = true
+        this.physics.add.overlap(this.enemy1, this.player)
+        this.physics.world.on('overlap', () =>
+        {
+            this.gameover = true;
+            this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER').setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or <- for Menu').setOrigin(0.5);
+            this.player.setVelocity(0)
+            //this.player.destroy()
+
+        }, null, this)
+
     }
 
     update() {
@@ -60,21 +73,24 @@ class Play extends Phaser.Scene {
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
             this.scene.start("menuScene");
         }
-
-        this.playerFSM.step()
-        //setTimeout(moveEnemy, 3000, this, this.enemy)
-        if(this.checkCollision(this.player, this.enemy1)) {
-            gameover = true;
-            this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER').setOrigin(0.5);
-            this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or <- for Menu').setOrigin(0.5);
-            this.player.setVelocity(0)
-            this.player.destroy()
-            
+        if(this.gameOver === true){
+            console.log("gameover true")
         }
+        else{
+            this.playerFSM.step()
+        }
+        //setTimeout(moveEnemy, 3000, this, this.enemy)
+        //if(enemyCollide) {
+          //  gameover = true;
+            //this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER').setOrigin(0.5);
+            //this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or <- for Menu').setOrigin(0.5);
+            //this.player.setVelocity(0)
+            //this.player.destroy()
+            
+        //}
 
         if(this.checkCollision(this.player, this.door)) {
             this.scene.restart();
-            
         }
     }
 
