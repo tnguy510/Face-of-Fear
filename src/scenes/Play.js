@@ -3,9 +3,7 @@ class Play extends Phaser.Scene {
         super("playScene")
     }
     create(){
-        keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
-        this.doorOverlay = false
-        
+        keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC)
         //tilemap info
         const map = this.add.tilemap('tilemapJSON')
         const tileset = map.addTilesetImage('tilemap', 'tilesetImage')
@@ -16,20 +14,15 @@ class Play extends Phaser.Scene {
         const doorEvent = map.findObject('Events', obj=> obj.name === 'doorEvent')
         this.door = this.physics.add.image(doorEvent.x, doorEvent.y,'door')
 
-        //enemy spawning
-        this.enemy = [1,2,3]
-
+        //spawns # of class Enemies depending on difficulty
         if(enemyType === "spider" || enemyType === "needle"){
-            //console.log("spider play")
-            //for(let i = 1; difficulty <= 3; i++){
-            //    this.enemy[i] = new Enemy(this, Phaser.Math.Between(0, game.config.width), 
-            ///    Phaser.Math.Between(0, game.config.height), enemyType, 0, 'down')
-                //scene, x, y, texture, frame, direction
-                //this.physics.add.existing(this)
-            //}
-            this.enemy1 = new Enemy(this, 200, 300, enemyType, 0, 'down')
-            this.enemy1.body.collideWorldBounds = true
-            this.enemy1.setScale(.3)
+            for(let i = 1; i <= difficulty; i++){
+                this["enemy"+i] = new Enemy(this, Phaser.Math.Between(0, map.widthInPixels), 
+                Phaser.Math.Between(0, map.heightInPixels), enemyType, 0, 'down')
+                moveEnemy(this, this["enemy"+i])
+                console.log("spider")
+                this["enemy"+i].setScale(.3)
+            }
         }
         else if(enemyType === "hole"){
             console.log("hole play")
@@ -45,7 +38,6 @@ class Play extends Phaser.Scene {
             this.physics.world.debugGraphic.clear()
         }, this)
 
-        moveEnemy(this, this.enemy1)
 
         this.backgroundNoise = this.sound.add('spidercrawl')
         this.backgroundNoise.loop = true
@@ -62,20 +54,24 @@ class Play extends Phaser.Scene {
         })
 
         this.physics.add.collider(this.player, wallsLayer)
-        this.physics.add.collider(this.enemy1, wallsLayer)
+
+        for(let i = 1; i <= difficulty; i++){
+            this.physics.add.collider(this["enemy"+i], wallsLayer)
+        }
 
     }
 
     update() {
         if (this.physics.overlap(this.player, this.door)) {
+            difficulty += 1
             this.scene.restart();
         }
-        if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
-            this.scene.start("menuScene");
+        if (Phaser.Input.Keyboard.JustDown(keyESC)) {
+            console.log("moving to pause")
+            this.scene.launch('pauseScene')
+            this.game.scene.pause()
         }
-        if(this.gameOver === true){
-            console.log("gameover true")
-        }
+
         this.playerFSM.step()
     }
 

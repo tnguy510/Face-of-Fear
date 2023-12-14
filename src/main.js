@@ -23,7 +23,6 @@ let { width, height } = game.config
 let borderUISize = game.config.height / 25;
 let borderPadding = borderUISize / 15;
 
-let gameover = false;
-let keyENTER, keyLEFT, keyRIGHT, keyUP, keyR;
+let keyENTER, keyLEFT, keyRIGHT, keyUP, keyR, keyESC;
 var enemyType;
 let difficulty = 1
