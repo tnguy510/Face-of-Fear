@@ -10,5 +10,3 @@ HolesPhobia
     Questions
 
 Concrete image by Yan Ots
-
-Figure out why enemy hitbox includes a horizontal line

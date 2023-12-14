@@ -4,6 +4,7 @@ class Play extends Phaser.Scene {
     }
     create(){
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
+        this.doorOverlay = false
         
         //tilemap info
         const map = this.add.tilemap('tilemapJSON')
@@ -11,7 +12,11 @@ class Play extends Phaser.Scene {
 
         const bgLayer = map.createLayer('background', tileset, 0, 0)
         const wallsLayer = map.createLayer('walls', tileset, 0, 0)
+        
+        const doorEvent = map.findObject('Events', obj=> obj.name === 'doorEvent')
+        this.door = this.physics.add.image(doorEvent.x, doorEvent.y,'door')
 
+        //enemy spawning
         this.enemy = [1,2,3]
 
         if(enemyType === "spider" || enemyType === "needle"){
@@ -62,7 +67,7 @@ class Play extends Phaser.Scene {
     }
 
     update() {
-        if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
+        if (this.physics.overlap(this.player, this.door)) {
             this.scene.restart();
         }
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {

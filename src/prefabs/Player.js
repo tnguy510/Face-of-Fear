@@ -10,7 +10,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
 
         //set custom Player properties
         this.direction = direction
-        this.playerVelocity = 100     //in pixels
+        this.playerVelocity = 500     //in pixels
         this.hurtTimer = 250        //in ms
 
         scene.playerFSM = new StateMachine( 'idle', {

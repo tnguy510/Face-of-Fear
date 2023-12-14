@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="13" height="20" tilewidth="48" tileheight="48" infinite="0" nextlayerid="4" nextobjectid="2">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="13" height="20" tilewidth="48" tileheight="48" infinite="0" nextlayerid="4" nextobjectid="6">
  <editorsettings>
   <export target="tilemap.json" format="json"/>
  </editorsettings>
@@ -15036,7 +15036,7 @@
  <layer id="1" name="walls" width="13" height="20">
   <data encoding="csv">
 1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,2,2,2,2,2,3,2,2,2,2,2,1,
+1,2,2,2,2,2,0,2,2,2,2,2,1,
 1,0,0,0,0,0,0,0,0,0,0,0,1,
 1,0,0,0,0,0,0,0,0,0,0,0,1,
 1,0,0,0,0,0,0,0,0,0,0,0,1,
@@ -15059,6 +15059,9 @@
  </layer>
  <objectgroup id="3" name="Events">
   <object id="1" name="playerSpawn" x="309.488" y="887.434">
+   <point/>
+  </object>
+  <object id="5" name="doorEvent" x="312" y="68.6667">
    <point/>
   </object>
  </objectgroup>
