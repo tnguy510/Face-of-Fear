@@ -13,6 +13,7 @@ let config = {
     },
     width: 640,
     height: 480,
+    color: '#515966',
     scene: [ Load, Menu, Quiz, Play ]
 }
 
