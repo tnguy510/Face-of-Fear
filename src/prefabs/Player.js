@@ -5,6 +5,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         scene.physics.add.existing(this)   //add physics body to scene
 
         this.body.setSize(this.width / 2, this.height)
+        //this.body.setOffset(0, this.height / 2)
         this.body.setCollideWorldBounds(true)
 
         //set custom Player properties

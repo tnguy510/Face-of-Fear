@@ -12,7 +12,7 @@ let config = {
         },
     },
     width: 640,
-    height: 960,
+    height: 480,
     scene: [ Load, Menu, Quiz, Play ]
 }
 

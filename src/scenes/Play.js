@@ -4,7 +4,13 @@ class Play extends Phaser.Scene {
     }
     create(){
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
-        this.background = this.add.image(0,0, 'dungeon').setOrigin(0)
+        
+        //tilemap info
+        const map = this.add.tilemap('tilemapJSON')
+        const tileset = map.addTilesetImage('tilemap', 'tilesetImage')
+
+        const bgLayer = map.createLayer('background', tileset, 0, 0)
+        const wallsLayer = map.createLayer('walls', tileset, 0, 0)
 
         this.enemy = [1,2,3]
 
@@ -20,24 +26,12 @@ class Play extends Phaser.Scene {
             this.enemy1.body.collideWorldBounds = true
             this.enemy1.setScale(.3)
         }
-        //else if(enemyType === "needle"){
-        //    console.log("needle play")
-        //}
         else if(enemyType === "hole"){
             console.log("hole play")
         }
 
-        this.door = this.add.image(game.config.width / 2, 0,'door').setOrigin(0)
-
-        this.player = new Player(this, 200, 150, 'player', 1, 'down')
-
-        //const spider = this.physics.add.sprite(0, 0, 'spider')
-        
-        //this.enemy2 = new Enemy(this, this.world.randomX, this.world.randomX, enemyType, 1, 'down')
-        //this.enemy2.body.collideWorldBounds = true
-        //this.enemy3 = new Enemy(this, this.world.randomX, this.world.randomX, enemyType, 1, 'down')
-        //this.enemy3.body.collideWorldBounds = true
-        
+        const playerSpawn = map.findObject('Events', obj => obj.name === 'playerSpawn')
+        this.player = new Player(this, playerSpawn.x, playerSpawn.y, 'player', 1, 'down')
 
         this.keys = this.input.keyboard.createCursorKeys()
 
@@ -52,17 +46,18 @@ class Play extends Phaser.Scene {
         this.backgroundNoise.loop = true
         this.backgroundNoise.play()
 
-        this.player.body.onOverlap = true
-        this.physics.add.overlap(this.enemy1, this.player)
-        this.physics.world.on('overlap', () =>
-        {
-            this.gameover = true;
-            this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER').setOrigin(0.5);
-            this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or <- for Menu').setOrigin(0.5);
-            this.player.setVelocity(0)
-            //this.player.destroy()
+        this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
+        this.cameras.main.startFollow(this.player, 0.25, 0.25)
+        this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
 
-        }, null, this)
+
+        //wall collision
+        wallsLayer.setCollisionByProperty({
+            collides: true
+        })
+
+        this.physics.add.collider(this.player, wallsLayer)
+        this.physics.add.collider(this.enemy1, wallsLayer)
 
     }
 
@@ -76,33 +71,7 @@ class Play extends Phaser.Scene {
         if(this.gameOver === true){
             console.log("gameover true")
         }
-        else{
-            this.playerFSM.step()
-        }
-        //setTimeout(moveEnemy, 3000, this, this.enemy)
-        //if(enemyCollide) {
-          //  gameover = true;
-            //this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER').setOrigin(0.5);
-            //this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or <- for Menu').setOrigin(0.5);
-            //this.player.setVelocity(0)
-            //this.player.destroy()
-            
-        //}
-
-        if(this.checkCollision(this.player, this.door)) {
-            this.scene.restart();
-        }
+        this.playerFSM.step()
     }
 
-    checkCollision(player, object){
-        //simple AABB checking
-        if (player.x < object.x + object.width &&
-            player.x + player.width > object.x &&
-            player.y < object.y + object.height &&
-            player.height + player.y > object.y){
-                return true;
-            } else {
-                return false;
-            }
-    }
 }

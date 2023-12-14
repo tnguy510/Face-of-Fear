@@ -1,0 +1,86 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "": {
+            "scaleInDock": 1
+        },
+        "#concrete": {
+            "scaleInDock": 1
+        },
+        "tilemap.json": {
+            "scale": 0.8530208333333333,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 300.6960556844547,
+                "y": 468.33557210892667
+            }
+        },
+        "tilemap.json#concrete": {
+            "scaleInDock": 1
+        },
+        "tilemap.json#tilemap": {
+            "scaleInDock": 1
+        },
+        "tilemap.tmj": {
+            "scale": 0.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 497,
+                "y": 605
+            }
+        },
+        "tilemap.tmj#concrete": {
+            "scaleInDock": 1
+        },
+        "tilemap.tmj#tilemap": {
+            "scaleInDock": 1
+        },
+        "tilemap.tmx": {
+            "scale": 0.8530208333333333,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 312.41909879106123,
+                "y": 480.05861521553305
+            }
+        },
+        "tilemap.tmx#concrete": {
+            "scaleInDock": 1
+        },
+        "tilemap.tmx#tilemap": {
+            "scaleInDock": 1
+        },
+        "tilemap.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.exportedFilePath": "C:/Users/Diamondminer74/Desktop/School/CMPM 120/Face-of-Fear/assets",
+    "last.imagePath": "C:/Users/Diamondminer74/Desktop/School/CMPM 120/Face-of-Fear/assets",
+    "map.height": 960,
+    "map.lastUsedExportFilter": "All Files (*)",
+    "map.lastUsedFormat": "json",
+    "map.tileHeight": 48,
+    "map.tileWidth": 48,
+    "map.width": 640,
+    "openFiles": [
+    ],
+    "project": "faceoffear.tiled-project",
+    "property.type": "bool",
+    "recentFiles": [
+        "tilemap.json",
+        "tilemap.tmj",
+        "tilemap.tsx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 48,
+        "width": 48
+    }
+}
