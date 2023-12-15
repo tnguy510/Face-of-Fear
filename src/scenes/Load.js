@@ -38,7 +38,7 @@ class Load extends Phaser.Scene {
 
     create(){
         //game instructions
-        document.getElementById('info').innerHTML = '<strong>Controls:</strong> Arrows: move | ESC: Pause Game | E: Interact | D: debug (toggle)'
+        document.getElementById('info').innerHTML = '<strong>Controls:</strong> Arrows: move | ESC: Pause Game | E: Interact'
         document.getElementById('info').style.color = "#ffffff"
         document.getElementById('info').style.textAlign = 'center'
 

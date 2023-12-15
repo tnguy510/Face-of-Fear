@@ -56,11 +56,6 @@ class Play extends Phaser.Scene {
 
         this.keys = this.input.keyboard.createCursorKeys()
 
-        this.input.keyboard.on('keydown-D', function() {
-            this.physics.world.drawDebug = this.physics.world.drawDebug ? false : true
-            this.physics.world.debugGraphic.clear()
-        }, this)
-
         //background noise logic
         this.backgroundNoise.loop = true
         this.backgroundNoise.play()
