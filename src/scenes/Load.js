@@ -20,7 +20,9 @@ class Load extends Phaser.Scene {
             frameHeight: 440
         })
         this.load.image('needle', 'needle.png')
+        this.load.image('hole', 'hole.png')
         this.load.image('door', 'door.png')
+        this.load.image('mirrorlight', 'mirrorEventImage.png')
         this.load.audio('spidercrawl', 'critters-creeping.wav');
         this.load.image('tilesetImage', 'tilemap.png')
         this.load.tilemapTiledJSON('tilemapJSON', 'tilemap.json')
@@ -30,7 +32,9 @@ class Load extends Phaser.Scene {
     }
 
     create(){
-
+        document.getElementById('info').innerHTML = '<strong>Controls:</strong> Arrows: move | ESC: Pause Game | E: Interact | D: debug (toggle)'
+        document.getElementById('info').style.color = "#ffffff"
+        
         // player animations (walking)
         this.anims.create({
             key: 'walk-down',

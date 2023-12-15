@@ -164,6 +164,11 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"overlap",
+                         "type":"bool",
+                         "value":true
                         }]
                 }, 
                 {

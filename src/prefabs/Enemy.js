@@ -48,6 +48,6 @@ function moveEnemy(scene, enemy) {
     //    return
     //}
     //else{
-    //    setTimeout(moveEnemy, 300, scene, enemy)
+        setTimeout(moveEnemy, 300, scene, enemy)
     //}
 }

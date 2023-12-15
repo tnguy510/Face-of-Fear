@@ -4,8 +4,8 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this)
         scene.physics.add.existing(this)   //add physics body to scene
 
-        this.body.setSize(this.width / 2, this.height)
-        //this.body.setOffset(0, this.height / 2)
+        this.body.setSize(this.width / 2, this.height / 2)
+        this.body.setOffset(this.width /4, this.height / 2)
         this.body.setCollideWorldBounds(true)
 
         //set custom Player properties
@@ -75,14 +75,3 @@ class MoveState extends State {
     }
 }
 
-//class DeadState extends State {
-  //  execute(scene, player) {
-        //player.setVelocity(0)
-        //player.anims.play(`walk-${player.direction}`)
-   //     if(!gameover === true){
-            //player.destroy()
-   //         this.stateMachine.transition('idle')
-   //         return
-  //      }
-  //  }
-//}

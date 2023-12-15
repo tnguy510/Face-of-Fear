@@ -5,9 +5,9 @@ class Menu extends Phaser.Scene {
 
     create(){
         let menuConfig = {
-            fontFamily: 'Ariel',
-            fontSize: '28px',
-            backgroundColor: '#ff2c2c',
+            fontFamily: 'Ultra',
+            fontSize: '30px',
+            backgroundColor: '#000000',
             color: '#ffffff',
             align: 'right',
             padding: {
@@ -20,9 +20,9 @@ class Menu extends Phaser.Scene {
         this.add.text(game.config.width/2, game.config.height/3 - borderUISize -
             borderPadding, 'Face of Fear', menuConfig).setOrigin(0.5)
         this.add.text(game.config.width/2, game.config.height/2 - borderUISize -
-            borderPadding, 'Enter to Go to Quiz, Left for Spiders', menuConfig).setOrigin(0.5)
+            borderPadding, 'Choose Your Fear', menuConfig).setOrigin(0.5)
         this.add.text(game.config.width/2, 2*game.config.height/3 - borderUISize -
-            borderPadding, 'Right for Needles, Up for Holes', menuConfig).setOrigin(0.5)
+            borderPadding, '← for Spiders, → for Needles, ↑ for Holes', menuConfig).setOrigin(0.5)
         //menu keys
         keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER)
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT)
@@ -31,23 +31,16 @@ class Menu extends Phaser.Scene {
     }
 
     update() {
-        if (Phaser.Input.Keyboard.JustDown(keyENTER)){
-            console.log("regular menu")
-            this.scene.start('quizScene')
-        }
         if(Phaser.Input.Keyboard.JustDown(keyLEFT)){
             enemyType = "spider"
-            console.log("spidertime")
             this.scene.start('playScene')
         }
         if(Phaser.Input.Keyboard.JustDown(keyRIGHT)){
             enemyType = "needle"
-            console.log("needletime")
             this.scene.start('playScene')
         }
         if(Phaser.Input.Keyboard.JustDown(keyUP)){
             enemyType = "hole"
-            console.log("hole check")
             this.scene.start('playScene')
         }
         

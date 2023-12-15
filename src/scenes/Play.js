@@ -3,19 +3,6 @@ class Play extends Phaser.Scene {
         super("playScene")
     }
     create(){
-        //pause menu config
-        var pauseConfig = {
-            fontFamily: 'Ariel',
-            fontSize: '28px',
-            backgroundColor: '#ff2c2c',
-            color: '#ffffff',
-            align: 'right',
-            padding: {
-                top: 5,
-                bottom: 5,
-            },
-            fixedWidth: 0
-        }
         keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC)
         //tilemap info
         const map = this.add.tilemap('tilemapJSON')
@@ -32,11 +19,16 @@ class Play extends Phaser.Scene {
             for(let i = 1; i <= difficulty; i++){
                 this["enemy"+i] = new Enemy(this, Phaser.Math.Between(0, game.config.width), 
                 Phaser.Math.Between(0, game.config.height), enemyType, 0, 'down')
-                this["enemy"+i].setScale(.3)
+                this["enemy"+i].setScale(0.3)
+                moveEnemy(this, this["enemy"+i])
             }
         }
         else if(enemyType === "hole"){
-            console.log("hole play")
+            //for(let i = 0; i <= difficulty * 5; i++){
+            //    this.physics.add.image(Phaser.Math.Between(0, map.widthInPixels), 
+           //     Phaser.Math.Between(0, map.heightInPixels),'hole').setScale(Phaser.Math.Between(0.01, 0.3))
+            //    console.log("hole made")
+            //}
         }
 
         const playerSpawn = map.findObject('Events', obj => obj.name === 'playerSpawn')
@@ -49,11 +41,12 @@ class Play extends Phaser.Scene {
             this.physics.world.debugGraphic.clear()
         }, this)
 
-
+        //background noise
         this.backgroundNoise = this.sound.add('spidercrawl')
         this.backgroundNoise.loop = true
         this.backgroundNoise.play()
 
+        //camera logic
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
         this.cameras.main.startFollow(this.player, 0.25, 0.25)
         this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
@@ -66,11 +59,25 @@ class Play extends Phaser.Scene {
 
         this.physics.add.collider(this.player, wallsLayer)
 
-        for(let i = 1; i <= difficulty; i++){
-            this.physics.add.collider(this["enemy"+i], wallsLayer)
-            this.physics.add.collider(this["enemy"+i], this.player)
+        if(enemyType === "spider" || enemyType === "needle"){
+            for(let i = 1; i <= difficulty; i++){
+                this.physics.add.collider(this["enemy"+i], wallsLayer)
+            }
         }
 
+        //pause menu config
+        let pauseConfig = {
+            fontFamily: 'Ariel',
+            fontSize: '112px',
+            backgroundColor: '#000000',
+            color: '#ffffff',
+            align: 'middle',
+            padding: {
+                top: map.heightInPixels / 2,
+                bottom: map.heightInPixels / 2,
+            }
+        }
+        this.pauseText = this.add.text(0, 0, 'Game Paused', pauseConfig).setOrigin(0.5).setVisible(false)
     }
 
     update() {
@@ -78,25 +85,21 @@ class Play extends Phaser.Scene {
             this.isPause = !this.isPause
         }
         if(this.isPause === true){
+            this.pauseText.setVisible(true)
             this.physics.pause()
 
         }
         else{
-            this.cameras.main.fadeOut([100])
+            this.pauseText.x = game.config.width / 2
+            this.pauseText.y = this.player.y
+            this.pauseText.setVisible(false)
             this.physics.resume()
-        }
-
-        if(ending === false){
-            for(let i = 1; i <= difficulty; i++){
-                moveEnemy(this, this["enemy"+i])
-            }
         }
 
         if (this.physics.overlap(this.player, this.door)) {
             difficulty += 1
-            if(difficulty <= 5){
+            if(difficulty >= 5){
                 ending = true
-                console.log(ending)
                 this.scene.start('endingScene')
             }
             else{
