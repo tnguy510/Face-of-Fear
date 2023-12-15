@@ -76,21 +76,22 @@ class End extends Phaser.Scene {
             this.physics.resume()
         }
 
-        //if player faces mirror, start dialouging
-            //if player is NOT at max difficulty, send them to quiz
-            //else, start ending dialouge
+        //checking if player has interacted with ending sequence
+        if(this.ending == true && Phaser.Input.Keyboard.JustDown(this.keys.EKey)){
+            difficulty = 0
+            this.scene.start('menuScene')
+        }
+
+        //checking if player is in front of mirror
         if (this.physics.overlap(this.player, this.mirror) && Phaser.Input.Keyboard.JustDown(this.keys.EKey)) {
             this.endingText.x = game.config.width / 2
             this.endingText.y = game.config.height / 2
             this.restartText.x = game.config.width / 2
             this.restartText.y = game.config.height *2 /3
-             this.endingText.setVisible(true)
-             this.restartText.setVisible(true)
-             this.ending = true
-        }
-
-        if(this.ending = true && Phaser.Input.Keyboard.JustDown(this.keys.EKey)){
-            this.scene.start('menuScene')
+            this.endingText.setVisible(true)
+            this.restartText.setVisible(true)
+            this.ending = true
+            console.log(this.ending)
         }
 
         this.playerFSM.step()

@@ -19,7 +19,9 @@ class Load extends Phaser.Scene {
             frameWidth: 380,
             frameHeight: 440
         })
+        this.load.image('web', 'spider web.png')
         this.load.image('needle', 'needle.png')
+        this.load.image('gloves', 'medical_gloves.png')
         this.load.image('hole', 'hole.png')
         this.load.image('door', 'door.png')
         this.load.image('mirrorlight', 'mirrorEventImage.png')

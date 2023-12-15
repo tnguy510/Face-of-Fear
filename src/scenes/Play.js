@@ -14,21 +14,34 @@ class Play extends Phaser.Scene {
         const doorEvent = map.findObject('Events', obj=> obj.name === 'doorEvent')
         this.door = this.physics.add.image(doorEvent.x, doorEvent.y,'door')
 
-        //spawns # of class Enemies depending on difficulty
+        //spawns # of class Enemies depending on difficultys
         if(enemyType === "spider" || enemyType === "needle"){
+            if(enemyType == "spider"){
+                for(let j = 0; j < 5; j++){
+                    var webs = this.add.image(Phaser.Math.Between(map.widthInPixels/ 10, map.widthInPixels * 9/ 10), 
+                    Phaser.Math.Between(map.heightInPixels / 10, map.heightInPixels * 9/ 10),'web')
+                }
+            }
+            if(enemyType == "needle"){
+                for(let j = 0; j < 5; j++){
+                    var gloves = this.add.image(Phaser.Math.Between(map.widthInPixels/ 10, map.widthInPixels * 9/ 10), 
+                    Phaser.Math.Between(map.heightInPixels / 10, map.heightInPixels * 9/ 10),'gloves')
+                    gloves.setScale(0.1)
+                }
+            }
             for(let i = 1; i <= difficulty; i++){
-                this["enemy"+i] = new Enemy(this, Phaser.Math.Between(0, game.config.width), 
-                Phaser.Math.Between(0, game.config.height), enemyType, 0, 'down')
+                this["enemy"+i] = new Enemy(this, Phaser.Math.Between(map.widthInPixels/ 10, map.widthInPixels * 9/ 10), 
+                Phaser.Math.Between(map.heightInPixels / 10, map.heightInPixels * 9/ 10), enemyType, 0, 'down')
                 this["enemy"+i].setScale(0.3)
                 moveEnemy(this, this["enemy"+i])
             }
         }
         else if(enemyType === "hole"){
-            //for(let i = 0; i <= difficulty * 5; i++){
-            //    this.physics.add.image(Phaser.Math.Between(0, map.widthInPixels), 
-           //     Phaser.Math.Between(0, map.heightInPixels),'hole').setScale(Phaser.Math.Between(0.01, 0.3))
-            //    console.log("hole made")
-            //}
+            for(let i = 1; i <= difficulty * 100; i++){
+                var hole = this.add.image(Phaser.Math.Between(map.widthInPixels/ 10, map.widthInPixels * 9/ 10), 
+                Phaser.Math.Between(map.heightInPixels / 10, map.heightInPixels * 9/ 10),'hole')
+                hole.setScale(0.1)
+            }
         }
 
         const playerSpawn = map.findObject('Events', obj => obj.name === 'playerSpawn')
@@ -98,11 +111,13 @@ class Play extends Phaser.Scene {
 
         if (this.physics.overlap(this.player, this.door)) {
             difficulty += 1
-            if(difficulty >= 5){
+            if(difficulty >= 6){
                 ending = true
+                this.game.sound.stopAll()
                 this.scene.start('endingScene')
             }
             else{
+                
                 this.scene.restart();
             }
         }
