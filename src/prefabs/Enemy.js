@@ -12,41 +12,42 @@ class Enemy extends Phaser.Physics.Arcade.Sprite {
         this.texture =  texture
         this.enemyVelocity = 100     //in pixels
 
-        //for (var i = 0; i < game.config.width; i++){
-        //    let enemy = new Enemy(scene, Phaser.Math.Between(0, game.config.width), 
-        //        Phaser.Math.Between(0, game.config.height), this.texture, 0, 'down')
-                //scene, x, y, texture, frame, direction
-        //        scene.physics.add.existing(this)
-        //}
     }
 }
 
 function moveEnemy(scene, enemy) {
-    //execute(scene, player) {
-        var move = Math.floor(Math.random() * 5)
+    if(enemy == null){
+        console.log("undefined")
+        return
+    }
 
-        let moveDirection = new Phaser.Math.Vector2(0,0)
-        if(move === 1) {
-            moveDirection.y = -1
-            enemy.direction = 'up'
-        } else if(move === 2) {
-            moveDirection.y = 1
-            enemy.direction = 'down'
-        }
-        if(move === 3) {
-            moveDirection.x = -1
-            enemy.direction = 'left'
-        } else if(move === 4) {
-            moveDirection.x = 1
-            enemy.direction = 'right'
-        }
-        else{
-            
-        }
+    var move = Math.floor(Math.random() * 5)
 
-        moveDirection.normalize()
-        enemy.setVelocity(enemy.enemyVelocity * moveDirection.x, enemy.enemyVelocity * moveDirection.y)
-        //enemy.anims.play(`walk-${enemy.direction}`, true)
-        setTimeout(moveEnemy, 300, this, enemy)
+    let moveDirection = new Phaser.Math.Vector2(0,0)
+    if(move === 1) {
+         moveDirection.y = -1
+        enemy.direction = 'up'
+    } else if(move === 2) {
+        moveDirection.y = 1
+        enemy.direction = 'down'
+    }
+    if(move === 3) {
+        moveDirection.x = -1
+        enemy.direction = 'left'
+    } else if(move === 4) {
+        moveDirection.x = 1
+        enemy.direction = 'right'
+    }
+    else{
+        
+    }
+
+    moveDirection.normalize()
+    enemy.setVelocity(enemy.enemyVelocity * moveDirection.x, enemy.enemyVelocity * moveDirection.y)
+    //if(ending === true){
+    //    return
+    //}
+    //else{
+    //    setTimeout(moveEnemy, 300, scene, enemy)
     //}
 }

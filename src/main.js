@@ -14,7 +14,7 @@ let config = {
     width: 640,
     height: 480,
     color: '#515966',
-    scene: [ Load, Menu, Quiz, Play ]
+    scene: [ Load, Menu, Quiz, Play, End ]
 }
 
 let game = new Phaser.Game(config)
@@ -26,4 +26,5 @@ let borderPadding = borderUISize / 15;
 
 let keyENTER, keyLEFT, keyRIGHT, keyUP, keyR, keyESC;
 var enemyType;
-let difficulty = 1
+let difficulty = 4
+let ending = false

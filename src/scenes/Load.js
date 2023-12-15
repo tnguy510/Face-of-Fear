@@ -24,6 +24,7 @@ class Load extends Phaser.Scene {
         this.load.audio('spidercrawl', 'critters-creeping.wav');
         this.load.image('tilesetImage', 'tilemap.png')
         this.load.tilemapTiledJSON('tilemapJSON', 'tilemap.json')
+        this.load.tilemapTiledJSON('room_tilemapJSON', 'room_tilemap.json')
         
         
     }

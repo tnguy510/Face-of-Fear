@@ -13,6 +13,31 @@
         "#concrete": {
             "scaleInDock": 1
         },
+        "room_tilemap.json": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 289.5,
+                "y": 249.5
+            }
+        },
+        "room_tilemap.json#tilemap": {
+            "scaleInDock": 1
+        },
+        "room_tilemap.tmx": {
+            "expandedObjectLayers": [
+                4
+            ],
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 290.5,
+                "y": 250.5
+            }
+        },
+        "room_tilemap.tmx#tilemap": {
+            "scaleInDock": 1
+        },
         "tilemap.json": {
             "scale": 0.8530208333333333,
             "selectedLayer": 0,
@@ -42,11 +67,14 @@
             "scaleInDock": 1
         },
         "tilemap.tmx": {
-            "scale": 0.8530208333333333,
-            "selectedLayer": 0,
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 1.5,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 312.41909879106123,
-                "y": 480.05861521553305
+                "x": 306.33333333333337,
+                "y": 789
             }
         },
         "tilemap.tmx#concrete": {
@@ -62,7 +90,7 @@
     },
     "last.exportedFilePath": "C:/Users/Diamondminer74/Desktop/School/CMPM 120/Face-of-Fear/assets",
     "last.imagePath": "C:/Users/Diamondminer74/Desktop/School/CMPM 120/Face-of-Fear/assets",
-    "map.height": 960,
+    "map.height": 480,
     "map.lastUsedExportFilter": "All Files (*)",
     "map.lastUsedFormat": "json",
     "map.tileHeight": 48,

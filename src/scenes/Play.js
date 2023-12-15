@@ -3,6 +3,19 @@ class Play extends Phaser.Scene {
         super("playScene")
     }
     create(){
+        //pause menu config
+        var pauseConfig = {
+            fontFamily: 'Ariel',
+            fontSize: '28px',
+            backgroundColor: '#ff2c2c',
+            color: '#ffffff',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 0
+        }
         keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC)
         //tilemap info
         const map = this.add.tilemap('tilemapJSON')
@@ -19,8 +32,6 @@ class Play extends Phaser.Scene {
             for(let i = 1; i <= difficulty; i++){
                 this["enemy"+i] = new Enemy(this, Phaser.Math.Between(0, game.config.width), 
                 Phaser.Math.Between(0, game.config.height), enemyType, 0, 'down')
-                moveEnemy(this, this["enemy"+i])
-                console.log("spider")
                 this["enemy"+i].setScale(.3)
             }
         }
@@ -71,20 +82,30 @@ class Play extends Phaser.Scene {
 
         }
         else{
+            this.cameras.main.fadeOut([100])
             this.physics.resume()
+        }
+
+        if(ending === false){
+            for(let i = 1; i <= difficulty; i++){
+                moveEnemy(this, this["enemy"+i])
+            }
         }
 
         if (this.physics.overlap(this.player, this.door)) {
             difficulty += 1
-            this.scene.restart();
+            if(difficulty <= 5){
+                ending = true
+                console.log(ending)
+                this.scene.start('endingScene')
+            }
+            else{
+                this.scene.restart();
+            }
         }
-        //if (Phaser.Input.Keyboard.JustDown(keyESC)) {
-        //    console.log("moving to pause")
-        //    this.scene.launch('pauseScene')
-        //    this.scene.pause()
-        //}
 
         this.playerFSM.step()
+
     }
 
 }
