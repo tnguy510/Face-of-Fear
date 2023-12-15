@@ -1,4 +1,7 @@
 'use strict'
+//Name: Trish Nguyen
+//Phaser major components used: Physics systems, cameras, animation manager, tilemaps, text objects
+
 
 let config = {
     type: Phaser.AUTO,
@@ -14,7 +17,7 @@ let config = {
     width: 640,
     height: 480,
     color: '#515966',
-    scene: [ Load, Menu, Quiz, Play, End ]
+    scene: [ Load, Menu, Credits, Play, End ]
 }
 
 let game = new Phaser.Game(config)

@@ -23,6 +23,8 @@ class Menu extends Phaser.Scene {
             borderPadding, 'Choose Your Fear', menuConfig).setOrigin(0.5)
         this.add.text(game.config.width/2, 2*game.config.height/3 - borderUISize -
             borderPadding, '← for Spiders, → for Needles, ↑ for Holes', menuConfig).setOrigin(0.5)
+        this.add.text(game.config.width/2, game.config.height - borderUISize -
+            borderPadding - borderPadding, 'Press ENTER for Credits', menuConfig).setOrigin(0.5)
         //menu keys
         keyENTER = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER)
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT)
@@ -42,6 +44,9 @@ class Menu extends Phaser.Scene {
         if(Phaser.Input.Keyboard.JustDown(keyUP)){
             enemyType = "hole"
             this.scene.start('playScene')
+        }
+        if(Phaser.Input.Keyboard.JustDown(keyENTER)){
+            this.scene.start('creditScene')
         }
         
     }

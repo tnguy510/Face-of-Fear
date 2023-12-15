@@ -3,8 +3,8 @@
  <editorsettings>
   <export target="tilemap.json" format="json"/>
  </editorsettings>
- <tileset firstgid="1" name="tilemap" tilewidth="48" tileheight="48" tilecount="3000" columns="30">
-  <image source="tilemap.png" width="1440" height="4800"/>
+ <tileset firstgid="1" name="tilemap" tilewidth="48" tileheight="48" tilecount="3120" columns="30">
+  <image source="tilemap.png" width="1440" height="5000"/>
   <tile id="0">
    <properties>
     <property name="collides" type="bool" value="true"/>
@@ -15006,7 +15006,7 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="3001" name="concrete" tilewidth="48" tileheight="48" tilecount="5292" columns="63">
+ <tileset firstgid="3121" name="concrete" tilewidth="48" tileheight="48" tilecount="5292" columns="63">
   <image source="concrete.jpg" width="3024" height="4032"/>
  </tileset>
  <layer id="2" name="background" width="13" height="20">
@@ -15058,7 +15058,7 @@
 </data>
  </layer>
  <objectgroup id="3" name="Events">
-  <object id="1" name="playerSpawn" x="309.488" y="887.434">
+  <object id="1" name="playerSpawn" x="310.822" y="875.434">
    <point/>
   </object>
   <object id="5" name="doorEvent" x="312" y="68.6667">

@@ -78,8 +78,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":309.48833801441,
-                 "y":887.434363170106
+                 "x":310.821671347743,
+                 "y":875.434363170106
                 }, 
                 {
                  "height":0,
@@ -110,12 +110,12 @@
          "columns":30,
          "firstgid":1,
          "image":"tilemap.png",
-         "imageheight":4800,
+         "imageheight":5000,
          "imagewidth":1440,
          "margin":0,
          "name":"tilemap",
          "spacing":0,
-         "tilecount":3000,
+         "tilecount":3120,
          "tileheight":48,
          "tiles":[
                 {
@@ -27352,7 +27352,7 @@
         }, 
         {
          "columns":63,
-         "firstgid":3001,
+         "firstgid":3121,
          "image":"concrete.jpg",
          "imageheight":4032,
          "imagewidth":3024,

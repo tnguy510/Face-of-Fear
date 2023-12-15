@@ -25,7 +25,10 @@ class Load extends Phaser.Scene {
         this.load.image('hole', 'hole.png')
         this.load.image('door', 'door.png')
         this.load.image('mirrorlight', 'mirrorEventImage.png')
-        this.load.audio('spidercrawl', 'critters-creeping.wav');
+        this.load.audio('spidercrawl', 'spider sound.wav');
+        this.load.audio('doorclose', 'door close.wav');
+        this.load.audio('lights', 'lights_flicker.wav');
+        this.load.audio('creaking', 'creaking.wav');
         this.load.image('tilesetImage', 'tilemap.png')
         this.load.tilemapTiledJSON('tilemapJSON', 'tilemap.json')
         this.load.tilemapTiledJSON('room_tilemapJSON', 'room_tilemap.json')
@@ -34,9 +37,11 @@ class Load extends Phaser.Scene {
     }
 
     create(){
+        //game instructions
         document.getElementById('info').innerHTML = '<strong>Controls:</strong> Arrows: move | ESC: Pause Game | E: Interact | D: debug (toggle)'
         document.getElementById('info').style.color = "#ffffff"
-        
+        document.getElementById('info').style.textAlign = 'center'
+
         // player animations (walking)
         this.anims.create({
             key: 'walk-down',

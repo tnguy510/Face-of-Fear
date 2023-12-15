@@ -19,6 +19,7 @@ class End extends Phaser.Scene {
 
         const playerSpawn = map.findObject('Events', obj => obj.name === 'playerSpawn')
         this.player = new Player(this, playerSpawn.x, playerSpawn.y, 'player', 1, 'up')
+        this.player.setScale(1.5)
 
         //keyboard keys 
         keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC)

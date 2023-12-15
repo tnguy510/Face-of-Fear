@@ -14,11 +14,14 @@
             "scaleInDock": 1
         },
         "room_tilemap.json": {
+            "expandedObjectLayers": [
+                4
+            ],
             "scale": 1,
-            "selectedLayer": 1,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 289.5,
-                "y": 249.5
+                "x": 409.5,
+                "y": 148.5
             }
         },
         "room_tilemap.json#tilemap": {
